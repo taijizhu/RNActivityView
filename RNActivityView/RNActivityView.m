@@ -711,7 +711,9 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		self.bounds = self.superview.bounds;
 		[self setNeedsDisplay];
 	}
+	#ifdef ECARD_EXTENSION
 	
+	#else 
 	UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
 	CGFloat radians = 0;
 	if (UIInterfaceOrientationIsLandscape(orientation)) {
@@ -724,6 +726,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		else { radians = 0; }
 	}
 	rotationTransform = CGAffineTransformMakeRotation(radians);
+	#endif
 	
 	if (animated) {
 		[UIView beginAnimations:nil context:nil];
